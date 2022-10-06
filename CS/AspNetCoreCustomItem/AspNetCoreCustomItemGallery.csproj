@@ -11,6 +11,9 @@
   <ItemGroup>
     <Compile Remove="node_modules\**" />
     <Content Remove="node_modules\**" />
+    <Content Include="..\..\readme.md">
+      <Link>readme.md</Link>
+    </Content>
     <EmbeddedResource Remove="node_modules\**" />
     <None Remove="node_modules\**" />
   </ItemGroup>
