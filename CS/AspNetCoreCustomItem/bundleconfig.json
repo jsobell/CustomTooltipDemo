@@ -2,13 +2,14 @@
     {
         "outputFileName": "wwwroot/css/site.min.css",
       "inputFiles": [
+        "site.css",
         "node_modules/devexpress-gantt/dist/dx-gantt.min.css",
         "node_modules/devextreme/dist/css/dx.common.css",
         "node_modules/devextreme/dist/css/dx.light.css",
         "node_modules/@devexpress/analytics-core/dist/css/dx-analytics.common.css",
         "node_modules/@devexpress/analytics-core/dist/css/dx-analytics.light.css",
         "node_modules/@devexpress/analytics-core/dist/css/dx-querybuilder.css",
-        "node_modules/devexpress-dashboard/dist/css/dx-dashboard.light.min.css"
+        "node_modules/devexpress-dashboard/dist/css/dx-dashboard.light.min.css",
       ],
         "minify": { "enabled": false, "adjustRelativePaths": false }
     },

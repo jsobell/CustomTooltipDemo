@@ -2,7 +2,7 @@
 <Dashboard>
   <Title Text="Country Info" />
   <DataSources>
-    <ExcelDataSource Name="Energy Statistics" ConnectionName="energyStatisticsDataConnection" ComponentName="excelDataSource1">
+    <ExcelDataSource Name="Energy Statistics" ComponentName="excelDataSource1" ConnectionName="energyStatisticsDataConnection">
       <Options Type="DevExpress.DataAccess.Excel.ExcelSourceOptions" SkipEmptyRows="true" UseFirstRowAsHeader="true" SkipHiddenColumns="true" SkipHiddenRows="true">
         <ImportSettings Type="DevExpress.DataAccess.Excel.ExcelWorksheetSettings" WorksheetName="Map Data" />
       </Options>
@@ -11,56 +11,42 @@
     </ExcelDataSource>
   </DataSources>
   <Items>
-    <CustomItem ComponentName="customItemDashboardItem1" Name="Online Map" DataSource="excelDataSource1" CustomItemType="OnlineMap">
-      <CustomProperties>
-        <Type>RoadMap</Type>
-      </CustomProperties>
-      <InteractivityOptions MasterFilterMode="Single" />
+    <Chart ComponentName="chartDashboardItem1" Name="Chart 1" DataSource="excelDataSource1" FilterString="[DataItem0] = 'Italy'">
       <DataItems>
-        <Dimension DataMember="Latitude" DefaultId="DataItem0" />
-        <Dimension DataMember="Longitude" DefaultId="DataItem1" />
-        <Dimension DataMember="Country" DefaultId="DataItem2" />
-      </DataItems>
-      <SliceTables>
-        <SliceTable Name="SliceTable1">
-          <Dimensions>
-            <Dimension DefaultId="DataItem0" />
-            <Dimension DefaultId="DataItem1" />
-            <Dimension DefaultId="DataItem2" />
-          </Dimensions>
-        </SliceTable>
-      </SliceTables>
-      <InteractivityTargets>
-        <Dimension DefaultId="DataItem0" />
-        <Dimension DefaultId="DataItem1" />
-        <Dimension DefaultId="DataItem2" />
-      </InteractivityTargets>
-      <CustomMetadata>
-        <Latitude ItemType="Dimension" DefaultId="DataItem0" />
-        <Longitude ItemType="Dimension" DefaultId="DataItem1" />
-        <Tooltip ItemType="Dimension" DefaultId="DataItem2" />
-      </CustomMetadata>
-    </CustomItem>
-    <CustomItem ComponentName="customItemDashboardItem2" Name="Web Page" DataSource="excelDataSource1" CustomItemType="WebPage">
-      <DataItems>
+        <Measure DataMember="Production" DefaultId="DataItem1">
+          <NumericFormat FormatType="Number" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
         <Dimension DataMember="Country" DefaultId="DataItem0" />
+        <Dimension DataMember="EnergyType" DefaultId="DataItem2" />
+        <Measure DataMember="Import" DefaultId="DataItem3">
+          <NumericFormat FormatType="Number" Precision="4" Unit="Ones" />
+        </Measure>
       </DataItems>
-      <SliceTables>
-        <SliceTable Name="SliceTable1">
-          <Dimensions>
-            <Dimension DefaultId="DataItem0" />
-          </Dimensions>
-        </SliceTable>
-      </SliceTables>
-      <CustomMetadata>
-        <Attribute ItemType="Dimension" DefaultId="DataItem0" />
-      </CustomMetadata>
-    </CustomItem>
+      <SeriesDimensions>
+        <SeriesDimension DefaultId="DataItem2" />
+      </SeriesDimensions>
+      <Arguments>
+        <Argument DefaultId="DataItem0" />
+      </Arguments>
+      <Panes>
+        <Pane Name="Pane 1">
+          <Series>
+            <Simple SeriesType="StackedBar">
+              <Value DefaultId="DataItem1" />
+              <PointLabelOptions Position="Inside" ContentType="Value" />
+            </Simple>
+            <Simple SeriesType="Point">
+              <Value DefaultId="DataItem3" />
+              <PointLabelOptions ContentType="Argument, SeriesName, Value" />
+            </Simple>
+          </Series>
+        </Pane>
+      </Panes>
+    </Chart>
   </Items>
   <LayoutTree>
     <LayoutGroup>
-      <LayoutItem DashboardItem="customItemDashboardItem1" />
-      <LayoutItem DashboardItem="customItemDashboardItem2" />
+      <LayoutItem DashboardItem="chartDashboardItem1" Weight="2.3715210092656256" />
     </LayoutGroup>
   </LayoutTree>
 </Dashboard>
