@@ -11,17 +11,27 @@
     </ExcelDataSource>
   </DataSources>
   <Items>
-    <Chart ComponentName="chartDashboardItem1" Name="Chart 1" DataSource="excelDataSource1" FilterString="[DataItem0] = 'Italy'">
+    <Chart ComponentName="chartDashboardItem1" Name="Chart 1" DataSource="excelDataSource1">
+      <CustomProperties>
+        <descriptionEnabled>true</descriptionEnabled>
+        <description>dfghdfghdfgh</description>
+        <ConstantLineSettings>[{"key":1,"name":"Flibble","isBound":false,"measureId":"","value":100,"color":"#ed2f2f","labelText":"Total%"},{"key":2,"name":"SumProd","isBound":true,"measureId":"DataItem3","value":500,"color":"#17ff0f","labelText":"Sum of Production"}]</ConstantLineSettings>
+        <TooltipFormat>${data.seriesName}: ${f(data.value/1000,'###,##0.00')}</TooltipFormat>
+        <TooltipColour>red</TooltipColour>
+      </CustomProperties>
       <DataItems>
         <Measure DataMember="Production" DefaultId="DataItem1">
           <NumericFormat FormatType="Number" Unit="Ones" IncludeGroupSeparator="true" />
         </Measure>
         <Dimension DataMember="Country" DefaultId="DataItem0" />
         <Dimension DataMember="EnergyType" DefaultId="DataItem2" />
-        <Measure DataMember="Import" DefaultId="DataItem3">
-          <NumericFormat FormatType="Number" Precision="4" Unit="Ones" />
-        </Measure>
+        <Measure DataMember="Production" SummaryType="Count" DefaultId="DataItem4" />
+        <Measure DataMember="Year" DefaultId="DataItem3" />
       </DataItems>
+      <HiddenMeasures>
+        <Measure DefaultId="DataItem4" />
+        <Measure DefaultId="DataItem3" />
+      </HiddenMeasures>
       <SeriesDimensions>
         <SeriesDimension DefaultId="DataItem2" />
       </SeriesDimensions>
@@ -34,10 +44,6 @@
             <Simple SeriesType="StackedBar">
               <Value DefaultId="DataItem1" />
               <PointLabelOptions Position="Inside" ContentType="Value" />
-            </Simple>
-            <Simple SeriesType="Point">
-              <Value DefaultId="DataItem3" />
-              <PointLabelOptions ContentType="Argument, SeriesName, Value" />
             </Simple>
           </Series>
         </Pane>

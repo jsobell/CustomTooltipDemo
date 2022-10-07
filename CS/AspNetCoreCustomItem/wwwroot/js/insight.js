@@ -39,7 +39,6 @@ function customizeWidgetOptions(e) {
                 window.x = data;
                 console.log(data.point.series.tag.valueFormats[0]);
                 return {
-                    // text: `${data.seriesName}: ${DevExpress.localization.formatNumber(data.value, '#,##0.00')}`,
                     text: `${data.seriesName}: ${data.valueText}`
                 };
             }
@@ -70,6 +69,12 @@ return e;
 
 function onBeforeRender(dashboardControl) {
     dashboardControl.registerExtension(new DevExpress.Dashboard.DashboardPanelExtension(dashboardControl));
+
+    dashboardControl.registerExtension(new ItemDescriptionExtension(dashboardControl));
+    dashboardControl.registerExtension(new ChartScaleBreaksExtension(dashboardControl));
+    dashboardControl.registerExtension(new ChartConstantLinesExtension(dashboardControl));
+    dashboardControl.registerExtension(new TooltipFormatExtension(dashboardControl));
+
     dashboardControl.registerExtension(new SimpleTableCustomItem(dashboardControl));
     dashboardControl.registerExtension(new PolarChartCustomItem(dashboardControl));
     dashboardControl.registerExtension(new ParameterCustomItem(dashboardControl));
@@ -79,9 +84,11 @@ function onBeforeRender(dashboardControl) {
     dashboardControl.registerExtension(new TreeViewCustomItem(dashboardControl));
     dashboardControl.registerExtension(new FunnelD3CustomItem(dashboardControl));
 
+/*
     const viewerApiExtension = dashboardControl.findExtension('viewer-api');
     if (viewerApiExtension)
         viewerApiExtension.on('itemWidgetOptionsPrepared', customizeWidgetOptions);
+*/
 }
 
 window.InsightFunctions = {

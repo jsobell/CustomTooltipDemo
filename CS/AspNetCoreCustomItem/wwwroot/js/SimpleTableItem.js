@@ -12,7 +12,7 @@
             h-4v-4h4V20z M20,14h-4v-4h4V14z M20,8h-4V4h4V8z"/>
         </svg>`;
 
-    const simpleTableMetadata = {        
+    const simpleTableMetadata = {
         bindings: [{
             propertyName: 'customDimensions',
             dataItemType: 'Dimension',
@@ -113,6 +113,7 @@
     }
     class SimpleTableItem {
         constructor(dashboardControl) {
+            console.log('dashboardControl', dashboardControl);
             dashboardControl.registerIcon(svgIcon);
             this.name = SIMPLE_TABLE_EXTENSION_NAME;
             this.metaData = simpleTableMetadata;
